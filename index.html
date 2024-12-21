@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background: #ffffff;
+            overflow: auto;
+        }
+
+        #content-wrapper {
+            position: relative;
+            width: 1000px;
+            height: 800px;
+        }
+
+        .image-wrapper {
+            position: absolute;
+        }
+
+        #piano-wrapper {
+            top: 80px;
+            left: 700px;
+        }
+
+        #piano-image {
+            width: 500px;
+            height: auto;
+        }
+
+        #piano-overlay {
+            position: absolute;
+            top: 0;
+            left: 205px;
+            width: 58%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0);
+            pointer-events: auto;
+            z-index: 1;
+        }
+
+        #desk-wrapper {
+            bottom: 100px;
+            left: 400px;
+        }
+
+        #desk-image {
+            width: 600px;
+            height: auto;
+        }
+
+        #laptop-overlay {
+            position: absolute;
+            top: 90px;
+            left: 200px;
+            width: 37%;
+            height: 50%;
+            background-color: rgba(255, 255, 255, 0);
+            pointer-events: auto;
+            z-index: 1;
+        }
+
+        #books-overlay {
+            position: absolute;
+            top: 55px;
+            left: 35px;
+            width: 30%;
+            height: 55%;
+            background-color: rgba(255, 255, 255, 0);
+            pointer-events: auto;
+            z-index: 1;
+        }
+
+        #coffee-overlay {
+            position: absolute;
+            left: 475px;
+            bottom: 88px;
+            width: 15%;
+            height: 19%;
+            background-color: rgba(255, 255, 255, 0);
+            pointer-events: auto;
+            z-index: 1;
+        }
+
+        #notebook-overlay {
+            position: absolute;
+            left: 350px;
+            bottom: 20px;
+            width: 37%;
+            height: 25%;
+            background-color: rgba(255, 255, 255, 0);
+            pointer-events: auto;
+            z-index: 0;
+        }
+
+        #camera-wrapper {
+            left: 150px;
+            bottom: 184.8px;
+        }
+
+        #camera-image {
+            width: 250px;
+            height: auto;
+        }
+
+        #camera-overlay {
+            position: absolute;
+            left: 255px;
+            bottom: 190px;
+            width: 14%;
+            height: 13%;
+            background-color: rgba(255, 255, 255, 0);
+            pointer-events: auto;
+            z-index: 1;
+        }
+
+        #graduation-wrapper {
+            top: 80px;
+            left: 700px;
+        }
+
+        #graduation-container {
+            padding: 5px;
+        }
+
+        #graduation-frame-outer {
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        #graduation-frame-inner {
+            border: 1px solid black;
+            padding: 5px;
+            position: relative;
+        }
+
+        #graduation-image {
+            width: 150px;
+            height: auto;
+        }
+
+        #graduation-overlay {
+            position: absolute;
+            top: 75px;
+            left: 691px;
+            width: 20%;
+            height: 22%;
+            background-color: rgba(255, 255, 255, 0);
+            pointer-events: auto;
+            z-index: 1;
+        }
+
+        #intro-text {
+            position: absolute;
+            top: 200px;
+            left: 150px;
+            width: 500px;
+            text-align: left;
+            font-size: 24px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .overlay-label {
+            position: absolute;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            color: black;
+            visibility: hidden;
+            padding: 5px;
+            border-radius: 3px;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content-wrapper">
+        <div id="piano-wrapper" class="image-wrapper">
+            <img id="piano-image" src="piano.png" alt="Piano">
+            <div id="piano-overlay"></div>
+        </div>
+        <div id="desk-wrapper" class="image-wrapper">
+            <img id="desk-image" src="Desk.png" alt="Desk">
+            <div id="laptop-overlay"></div>
+            <div id="books-overlay"></div>
+            <div id="coffee-overlay"></div>
+            <div id="notebook-overlay"></div>
+        </div>
+        <div id="camera-wrapper" class="image-wrapper">
+            <img id="camera-image" src="Camera.png" alt="Camera">
+        </div>
+        <div id="camera-overlay"></div>
+        <div id="graduation-wrapper" class="image-wrapper">
+            <div id="graduation-container">
+                <div id="graduation-frame-outer">
+                    <div id="graduation-frame-inner">
+                        <img id="graduation-image" src="graduation.png" alt="Graduation">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="graduation-overlay"></div>
+        <div id="intro-text">
+            Hi, my name is Sophie Zhao. <br>
+            I am a senior at Cornell University <br>
+            studying Operations Research and Computer Science.
+        </div>
+    </div>
+    <script>
+
+        // Define the shared hover color
+        const hoverColor = 'rgba(0, 0, 0, 0.07)';
+
+        // Array of overlay IDs and their corresponding URLs
+        const overlays = [
+            { id: 'graduation-overlay', name: 'Academics', url: 'graduation.html' },
+            { id: 'piano-overlay', name: 'Music', url: 'piano.html' },
+            { id: 'laptop-overlay', name: 'Data Analytics Projects', url: 'laptop.html' },
+            { id: 'books-overlay', name: 'Modeling Papers', url: 'books.html' },
+            { id: 'camera-overlay', name: 'Photography', url: 'camera.html' },
+            { id: 'coffee-overlay', name: 'Career Journey', url: 'coffee.html' },
+            { id: 'notebook-overlay', name: 'Favorite Reads', url: 'notebook.html' }
+        ];
+
+        // Add event listeners dynamically
+        overlays.forEach(overlay => {
+            const element = document.getElementById(overlay.id);
+            if (element) {
+                // Create the label dynamically
+                const label = document.createElement('span');
+                label.textContent = overlay.name;
+                label.classList.add('overlay-label');
+                document.body.appendChild(label);
+
+                // Create the link (though not used for the label)
+                const link = document.createElement('a');
+                link.href = overlay.url;
+                element.parentNode.insertBefore(link, element);
+                link.appendChild(element);
+
+                // Add hover effect to show label and link
+                element.addEventListener('mouseover', function () {
+                    element.style.backgroundColor = hoverColor;
+
+                    // Get the position of the overlay and place the label
+                    const overlayRect = element.getBoundingClientRect();
+                    if (overlay.id === 'notebook-overlay') {
+                        label.style.left = `${overlayRect.left + window.scrollX}px`;
+                        label.style.top = `${overlayRect.bottom + window.scrollY - 5}px`;
+                    } else {
+                        label.style.left = `${overlayRect.left + window.scrollX}px`;
+                        label.style.top = `${overlayRect.top + window.scrollY - 30}px`;
+                    }
+                    
+
+                    label.style.visibility = 'visible'; // Show the label on hover
+                });
+
+                element.addEventListener('mouseout', function () {
+                    element.style.backgroundColor = 'rgba(255, 255, 255, 0)';
+                    label.style.visibility = 'hidden';
+                });
+            } else {
+                console.warn(`Element with ID "${overlay.id}" not found.`);
+            }
+        });
+    </script>
+</body>
+
+</html>
