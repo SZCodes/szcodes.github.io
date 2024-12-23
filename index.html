@@ -4,21 +4,35 @@
 <head>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+
     <style>
         body {
             margin: 0;
-            background: #ffffff;
+            background-color: #fafafa;
+            background-size: cover;
             overflow: auto;
         }
 
         #content-wrapper {
-            position: relative;
+            position: absolute;
             width: 1000px;
             height: 800px;
         }
 
         .image-wrapper {
             position: absolute;
+        }
+
+        #piano-overlay,
+        #laptop-overlay,
+        #books-overlay,
+        #coffee-overlay,
+        #notebook-overlay,
+        #camera-overlay,
+        #graduation-overlay {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0);
+            pointer-events: auto;
         }
 
         #piano-wrapper {
@@ -32,18 +46,15 @@
         }
 
         #piano-overlay {
-            position: absolute;
             top: 0;
             left: 205px;
             width: 58%;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0);
-            pointer-events: auto;
             z-index: 1;
         }
 
         #desk-wrapper {
-            bottom: 60px;
+            top: 390px;
             left: 400px;
         }
 
@@ -53,52 +64,40 @@
         }
 
         #laptop-overlay {
-            position: absolute;
             top: 90px;
             left: 200px;
             width: 37%;
             height: 50%;
-            background-color: rgba(255, 255, 255, 0);
-            pointer-events: auto;
             z-index: 1;
         }
 
         #books-overlay {
-            position: absolute;
             top: 55px;
             left: 35px;
             width: 30%;
             height: 55%;
-            background-color: rgba(255, 255, 255, 0);
-            pointer-events: auto;
             z-index: 1;
         }
 
         #coffee-overlay {
-            position: absolute;
             left: 475px;
             bottom: 88px;
             width: 15%;
             height: 19%;
-            background-color: rgba(255, 255, 255, 0);
-            pointer-events: auto;
             z-index: 1;
         }
 
         #notebook-overlay {
-            position: absolute;
             left: 350px;
             bottom: 20px;
             width: 37%;
             height: 25%;
-            background-color: rgba(255, 255, 255, 0);
-            pointer-events: auto;
             z-index: 0;
         }
 
         #camera-wrapper {
             left: 150px;
-            bottom: 144.8px;
+            top: 481.5px;
         }
 
         #camera-image {
@@ -107,13 +106,10 @@
         }
 
         #camera-overlay {
-            position: absolute;
-            left: 255px;
-            bottom: 150px;
-            width: 14%;
-            height: 13%;
-            background-color: rgba(255, 255, 255, 0);
-            pointer-events: auto;
+            left: 110px;
+            top: 45px;
+            width: 53%;
+            height: 68%;
             z-index: 1;
         }
 
@@ -143,13 +139,10 @@
         }
 
         #graduation-overlay {
-            position: absolute;
-            top: 115px;
-            left: 691px;
-            width: 20%;
-            height: 22%;
-            background-color: rgba(255, 255, 255, 0);
-            pointer-events: auto;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
             z-index: 1;
         }
 
@@ -179,30 +172,30 @@
 <body>
     <div id="content-wrapper">
         <div id="piano-wrapper" class="image-wrapper">
-            <img id="piano-image" src="Images/Piano.png" alt="Piano">
+            <img id="piano-image" src="Images/Piano-t.png" alt="Piano">
             <div id="piano-overlay"></div>
         </div>
         <div id="desk-wrapper" class="image-wrapper">
-            <img id="desk-image" src="Images/Desk.png" alt="Desk">
+            <img id="desk-image" src="Images/Desk-t.png" alt="Desk">
             <div id="laptop-overlay"></div>
             <div id="books-overlay"></div>
             <div id="coffee-overlay"></div>
             <div id="notebook-overlay"></div>
         </div>
         <div id="camera-wrapper" class="image-wrapper">
-            <img id="camera-image" src="Images/Camera.png" alt="Camera">
+            <img id="camera-image" src="Images/Camera-t.png" alt="Camera">
+            <div id="camera-overlay"></div>
         </div>
-        <div id="camera-overlay"></div>
         <div id="graduation-wrapper" class="image-wrapper">
             <div id="graduation-container">
                 <div id="graduation-frame-outer">
                     <div id="graduation-frame-inner">
-                        <img id="graduation-image" src="Images/Graduation.png" alt="Graduation">
+                        <img id="graduation-image" src="Images/Graduation-t.png" alt="Graduation">
                     </div>
                 </div>
             </div>
+            <div id="graduation-overlay"></div>
         </div>
-        <div id="graduation-overlay"></div>
         <div id="intro-text">
             Hi, my name is Sophie Zhao. <br>
             I am a senior at Cornell University <br>
@@ -212,16 +205,16 @@
     <script>
 
         // Define the shared hover color
-        const hoverColor = 'rgba(0, 0, 0, 0.07)';
+        const hoverColor = 'rgba(170,159,270, 0.1)';
 
         // Array of overlay IDs and their corresponding URLs
         const overlays = [
             { id: 'graduation-overlay', name: 'Academics', url: 'graduation.html' },
             { id: 'piano-overlay', name: 'Music', url: 'piano.html' },
             { id: 'laptop-overlay', name: 'Data Analytics Projects', url: 'laptop.html' },
-            { id: 'books-overlay', name: 'Modeling Papers', url: 'books.html' },
-            { id: 'camera-overlay', name: 'Photography', url: 'camera.html' },
-            { id: 'coffee-overlay', name: 'Career Journey', url: 'coffee.html' },
+            { id: 'books-overlay', name: 'Modeling Projects', url: 'books.html' }, // 
+            { id: 'camera-overlay', name: 'Photography', url: 'camera.html' }, // polaroids
+            { id: 'coffee-overlay', name: 'Career Journey', url: 'coffee.html' }, // internships
             { id: 'notebook-overlay', name: 'Favorite Reads', url: 'notebook.html' }
         ];
 
@@ -243,7 +236,8 @@
 
                 // Add hover effect to show label and link
                 element.addEventListener('mouseover', function () {
-                    element.style.backgroundColor = hoverColor;
+                    // element.style.backgroundColor = hoverColor;
+                    element.style.border = '1px solid #6F4436';
 
                     // Get the position of the overlay and place the label
                     const overlayRect = element.getBoundingClientRect();
@@ -255,18 +249,19 @@
                         label.style.top = `${overlayRect.top + window.scrollY - 30}px`;
                     }
                     
-
                     label.style.visibility = 'visible'; // Show the label on hover
                 });
 
                 element.addEventListener('mouseout', function () {
                     element.style.backgroundColor = 'rgba(255, 255, 255, 0)';
                     label.style.visibility = 'hidden';
+                    element.style.border = 'none';
                 });
             } else {
                 console.warn(`Element with ID "${overlay.id}" not found.`);
             }
         });
+        
     </script>
 </body>
 
