@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Journey</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+      background-color: #fafafa;
+      overflow: auto;
+    }
+    .container {
+      height: 80%; /* Adjust height as needed */
+      position: absolute;
+    }
+    #map-image {
+        width: 1000px;
+        height: auto;
+    }
+    .line {
+      width: 1px; /* Thin vertical line */
+      height: 100%;
+      background-color: black;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .box {
+      position: absolute;
+      padding: 5px 30px;
+      text-align: center;
+      width: 300px; /* Increased maximum width */
+      white-space: normal; /* Allow text to wrap */
+    }
+    .box.left-top {
+      top: 0; /* Aligned to the top */
+      right: 110%; /* Positioned to the left of the line with margin */
+      text-align: right; /* Right-align text */
+    }
+    .box.right-middle {
+      top: 50%; /* Centered vertically */
+      left: 110%; /* Positioned to the right of the line */
+      transform: translateY(-50%);
+      text-align: left; /* Left-align text */
+    }
+    .box.left-bottom {
+      bottom: 0; /* Aligned to the bottom */
+      right: 100%;
+      text-align: right; /* Right-align text */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- <div class="line"></div>
+    <div class="box left-top">This is a longer piece of text that wraps around when it reaches the maximum width.</div>
+    <div class="box right-middle">Short text</div>
+    <div class="box left-bottom">Another example of text that might wrap around if it gets too long for the box.</div> -->
+    <img id="map-image" src="Images/Career-Map-t-s-e.png" alt="Map">
+  </div>
+</body>
+</html>

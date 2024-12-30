@@ -11,13 +11,29 @@
             background-color: #fafafa;
             background-size: cover;
             overflow: auto;
+            scroll-behavior: smooth;
         }
 
-        #content-wrapper {
-            position: absolute;
-            width: 1000px;
-            height: 800px;
+        /* Pages */
+
+        .page {
+            width: 100%;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
         }
+
+        #page1, #page3 {
+            background-color: #fafafa;
+        }
+
+        #page2 {
+            background-color: #f0f0f0;
+        }
+
+        /* Images */
 
         .image-wrapper {
             position: absolute;
@@ -29,7 +45,8 @@
         #coffee-overlay,
         #notebook-overlay,
         #camera-overlay,
-        #graduation-overlay {
+        #academic-overlay,
+        #academic-overlay2 {
             position: absolute;
             background-color: rgba(255, 255, 255, 0);
             pointer-events: auto;
@@ -106,54 +123,55 @@
         }
 
         #camera-overlay {
-            left: 110px;
-            top: 45px;
+            left: 108px;
+            top: 43px;
             width: 53%;
             height: 68%;
             z-index: 1;
         }
 
-        #graduation-wrapper {
+        #academic-wrapper {
             top: 120px;
             left: 700px;
         }
 
-        #graduation-container {
+        #academic-wrapper2 {
+            bottom: 50px;
+            right: 70px;
+        }
+
+        #academic-container {
             padding: 5px;
         }
 
-        #graduation-frame-outer {
+        #academic-frame-outer {
             border: 1px solid black;
             padding: 5px;
         }
 
-        #graduation-frame-inner {
+        #academic-frame-inner {
             border: 1px solid black;
             padding: 5px;
             position: relative;
         }
 
-        #graduation-image {
+        .academic-image {
             width: 150px;
             height: auto;
         }
 
-        #graduation-overlay {
-            top: 0px;
-            left: 0px;
+        .academic-image2 {
+            width: 70px;
+            height: auto;
+        }
+
+        #academic-overlay,
+        #academic-overlay2 {
+            top: -2px;
+            left: -2px;
             width: 100%;
             height: 100%;
             z-index: 1;
-        }
-
-        #intro-text {
-            position: absolute;
-            top: 220px;
-            left: 150px;
-            width: 500px;
-            text-align: left;
-            font-size: 24px;
-            font-family: 'Poppins', sans-serif;
         }
 
         .overlay-label {
@@ -166,11 +184,57 @@
             border-radius: 3px;
             z-index: 2;
         }
+
+        #new-york-wrapper {
+            top: 30%;
+            right: 10%;
+        }
+
+        #new-york-image {
+            width: 450px;
+            height: auto;
+        }
+
+        /* Text */
+
+        .text {
+            position: absolute;
+            width: 500px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .text-container {
+            position: absolute;
+            top: 150px;
+            left: 150px;
+        }
+
+        #intro-text {
+            top: 220px;
+            left: 150px;
+            text-align: left;
+            font-size: 24px;
+        }
+
+        #title-text {
+            top: 0px;
+            left: 0px;
+            text-align: left;
+            font-size: 24px;
+        }
+
+        #page-text {
+            top: 60px;
+            left: 0px;
+            text-align: left;
+            font-size: 14px;
+        }
     </style>
 </head>
 
 <body>
-    <div id="content-wrapper">
+    <!-- Page 1 -->
+    <div id="page1" class="page">
         <div id="piano-wrapper" class="image-wrapper">
             <img id="piano-image" src="Images/Piano-t.png" alt="Piano">
             <div id="piano-overlay"></div>
@@ -186,58 +250,97 @@
             <img id="camera-image" src="Images/Camera-t.png" alt="Camera">
             <div id="camera-overlay"></div>
         </div>
-        <div id="graduation-wrapper" class="image-wrapper">
-            <div id="graduation-container">
-                <div id="graduation-frame-outer">
-                    <div id="graduation-frame-inner">
-                        <img id="graduation-image" src="Images/Graduation-t.png" alt="Graduation">
+        <div id="academic-wrapper" class="image-wrapper">
+            <div id="academic-container">
+                <div id="academic-frame-outer">
+                    <div id="academic-frame-inner">
+                        <img id="academic-image" class="academic-image" src="Images/Graduation-t.png" alt="Academic">
                     </div>
                 </div>
             </div>
-            <div id="graduation-overlay"></div>
+            <div id="academic-overlay"></div>
         </div>
-        <div id="intro-text">
+        <div id="intro-text" style="color:  black;" class="text">
             Hi, my name is Sophie Zhao. <br>
             I am a senior at Cornell University <br>
             studying Operations Research and Computer Science.
         </div>
     </div>
+
+    <!-- Page 2 -->
+
+    <div id="page2" class="page">
+        <div id="academic-wrapper2" class="image-wrapper">
+            <div id="academic-container">
+                <div id="academic-frame-outer" style="border: 0.5px solid black;"> 
+                    <div id="academic-frame-inner" style="border: 0.5px solid black;">
+                        <img id="academic-image2" class="academic-image2" src="Images/Graduation-t.png" alt="Academic">
+                    </div>
+                </div>
+            </div>
+            <div id="academic-overlay2"></div>
+        </div>
+        <div id="new-york-wrapper" class="image-wrapper">
+            <img id="new-york-image" src="Images/New-York-t.png" alt="New York">
+        </div>
+        <div id="text-container" class="text-container">
+            <div id="title-text" style="color: black;" class="text">
+                My Academic Journey
+            </div>
+            <div id="page-text" style="color: black;" class="text">
+                Now entering my final semester at Cornell University, here are some of the highlights of my academic journey:
+                <br><br>
+
+                Declared my major as an <a href="https://www.orie.cornell.edu/" style="text-decoration: underline; color: inherit;">Operations Research</a> major and pursuing a minor in Computer Science.
+                Found my passion for problem solving with applied mathematics and data science.
+                <br><br>
+                    
+                Discovered mathematical modeling and the <a href="https://e.math.cornell.edu/sites/mcm/" style="text-decoration: underline; color: inherit;">Cornell Mathematical Contest in Modeling (CMCM)</a>.
+                Represented Cornell in the 2024 international <a href="https://www.comap.com/contests/mcm-icm" style="text-decoration: underline; color: inherit;">Mathematical Contest in Modeling (MCM)</a> despite failing to submit a manuscript in the 2021 CMCM. 
+                (See my successful manuscripts under Modeling Projects) <br><br>
+
+                Joined <a href="https://www.cornelldti.org/" style="text-decoration: underline; color: inherit;">Cornell Digital Tech & Innovation Project Team</a> (previously Cornell Design & Tech Initiative).
+                From Business Analyst to Business Lead to Full-Team Lead improving team culture and operations for 100+ members.
+                <br><br>
+
+                To be continued...
+            </div>
+        </div>
+    </div>
+
+    <!-- Functions -->
+
     <script>
 
-        // Define the shared hover color
-        const hoverColor = 'rgba(170,159,270, 0.1)';
+        // Image interactions
+        
+        const hoverColor = 'rgba(170,159,270, 0.1)'; // Define the shared hover color
 
-        // Array of overlay IDs and their corresponding URLs
         const overlays = [
-            { id: 'graduation-overlay', name: 'Academics', url: 'graduation.html' },
-            { id: 'piano-overlay', name: 'Music', url: 'piano.html' },
-            { id: 'laptop-overlay', name: 'Data Analytics Projects', url: 'laptop.html' },
-            { id: 'books-overlay', name: 'Modeling Projects', url: 'books.html' }, // 
-            { id: 'camera-overlay', name: 'Photography', url: 'camera.html' }, // polaroids
-            { id: 'coffee-overlay', name: 'Career Journey', url: 'coffee.html' }, // internships
-            { id: 'notebook-overlay', name: 'Favorite Reads', url: 'notebook.html' }
+            { id: 'academic-overlay', name: 'Academics'},
+            { id: 'academic-overlay2', name: 'Home'},
+            { id: 'piano-overlay', name: 'Music'},
+            { id: 'laptop-overlay', name: 'Data Analytics Projects'},
+            { id: 'books-overlay', name: 'Modeling Projects'},
+            { id: 'camera-overlay', name: 'Photography'},
+            { id: 'coffee-overlay', name: 'Career Journey'},
+            { id: 'notebook-overlay', name: 'Favorite Reads'}
         ];
 
         // Add event listeners dynamically
         overlays.forEach(overlay => {
             const element = document.getElementById(overlay.id);
             if (element) {
-                // Create the label dynamically
+
+                // Create label for overlay
                 const label = document.createElement('span');
                 label.textContent = overlay.name;
                 label.classList.add('overlay-label');
                 document.body.appendChild(label);
 
-                // Create the link (though not used for the label)
-                const link = document.createElement('a');
-                link.href = overlay.url;
-                element.parentNode.insertBefore(link, element);
-                link.appendChild(element);
-
                 // Add hover effect to show label and link
                 element.addEventListener('mouseover', function () {
-                    // element.style.backgroundColor = hoverColor;
-                    element.style.border = '1px solid #6F4436';
+                    element.style.border = '3px solid rgba(111, 68, 54, 0.3)';
 
                     // Get the position of the overlay and place the label
                     const overlayRect = element.getBoundingClientRect();
@@ -257,11 +360,52 @@
                     label.style.visibility = 'hidden';
                     element.style.border = 'none';
                 });
+
+                // Add click event to scroll to page2
+                if (overlay.id === 'academic-overlay') {
+                    element.addEventListener('click', function (event) {
+                        event.preventDefault();
+                        document.getElementById('page2').scrollIntoView({ behavior: 'smooth' });
+                    });
+                }
             } else {
                 console.warn(`Element with ID "${overlay.id}" not found.`);
             }
         });
-        
+
+        // Add click event to scroll back to page1
+        document.getElementById('academic-overlay2').addEventListener('click', function (event) {
+            event.preventDefault();
+            document.getElementById('page1').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Add scroll event listener to handle fade in/out effect
+        window.addEventListener('scroll', function () {
+            const pages = document.querySelectorAll('.page');
+            const texts = document.querySelectorAll('.text');
+            const windowHeight = window.innerHeight;
+            const scrollPosition = window.scrollY;
+
+            pages.forEach((page, index) => {
+                const pageImages = page.querySelectorAll('.image-wrapper');
+                const pageTexts = page.querySelectorAll('.text');
+                const pageTop = page.offsetTop;
+                const pageHeight = page.offsetHeight;
+
+                // Calculate the opacity based on scroll position
+                const opacity = Math.max(1 - Math.abs(scrollPosition - pageTop) / windowHeight * 1.4, 0);
+
+                // Apply the opacity to the images
+                pageImages.forEach(image => {
+                    image.style.opacity = opacity;
+                });
+
+                // Apply the opacity to the images
+                pageTexts.forEach(text => {
+                    text.style.opacity = opacity;
+                });
+            });
+        });
     </script>
 </body>
 
