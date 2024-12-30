@@ -23,6 +23,7 @@
             justify-content: center;
             align-items: center;
             position: relative;
+            flex-direction: column;
         }
 
         #page1, #page3 {
@@ -33,11 +34,121 @@
             background-color: #f0f0f0;
         }
 
-        /* Images */
+        /* Wrappers */
 
         .image-wrapper {
             position: absolute;
         }
+
+        #piano-wrapper {
+            top: 100px;
+            left: 700px;
+        }
+
+        #desk-wrapper {
+            top: 390px;
+            left: 400px;
+        }
+
+        #book-wrapper {
+            bottom: 50px;
+            right: 70px;
+        }
+
+        #camera-wrapper {
+            left: 150px;
+            top: 481.5px;
+        }
+
+        #academic-wrapper {
+            top: 120px;
+            left: 700px;
+        }
+
+        #academic-wrapper2 {
+            bottom: 50px;
+            right: 70px;
+        }
+
+        #new-york-wrapper {
+            top: 30%;
+            right: 10%;
+        }
+
+        /* Images */
+
+        #piano-image {
+            width: 500px;
+            height: auto;
+        }
+
+        #desk-image {
+            width: 600px;
+            height: auto;
+        }
+
+        #books-image {
+            width: 80px;
+            height: auto;
+        }
+
+        #camera-image {
+            width: 250px;
+            height: auto;
+        }
+
+        .academic-image {
+            width: 150px;
+            height: auto;
+        }
+
+        .academic-image2 {
+            width: 70px;
+            height: auto;
+        }
+
+        #new-york-image {
+            width: 450px;
+            height: auto;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            gap: 120px; 
+            margin-top: 50px;
+        }
+
+        .image-item {
+            text-align: center;
+        }
+
+        .image-item img {
+            width: 220px;
+            height: 220px;
+            padding: 15px;
+            object-fit: contain;
+            border: 1px solid black;
+            box-sizing: border-box;
+        }
+
+        .image-title {
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            color: black;
+        }
+
+        .image-description {
+            margin-top: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: black;
+            width: 250px;
+        }
+
+        /* Overlays */
 
         #piano-overlay,
         #laptop-overlay,
@@ -46,20 +157,11 @@
         #notebook-overlay,
         #camera-overlay,
         #academic-overlay,
-        #academic-overlay2 {
+        #academic-overlay2,
+        #books-overlay2 {
             position: absolute;
             background-color: rgba(255, 255, 255, 0);
             pointer-events: auto;
-        }
-
-        #piano-wrapper {
-            top: 100px;
-            left: 700px;
-        }
-
-        #piano-image {
-            width: 500px;
-            height: auto;
         }
 
         #piano-overlay {
@@ -70,14 +172,13 @@
             z-index: 1;
         }
 
-        #desk-wrapper {
-            top: 390px;
-            left: 400px;
-        }
-
-        #desk-image {
-            width: 600px;
-            height: auto;
+        #books-overlay2 {
+            top: -10px;
+            left: -10px;
+            width: 120%;
+            height: 110%;
+            z-index: 1;
+            pointer-events: auto;
         }
 
         #laptop-overlay {
@@ -112,32 +213,12 @@
             z-index: 0;
         }
 
-        #camera-wrapper {
-            left: 150px;
-            top: 481.5px;
-        }
-
-        #camera-image {
-            width: 250px;
-            height: auto;
-        }
-
         #camera-overlay {
             left: 108px;
             top: 43px;
             width: 53%;
             height: 68%;
             z-index: 1;
-        }
-
-        #academic-wrapper {
-            top: 120px;
-            left: 700px;
-        }
-
-        #academic-wrapper2 {
-            bottom: 50px;
-            right: 70px;
         }
 
         #academic-container {
@@ -153,16 +234,6 @@
             border: 1px solid black;
             padding: 5px;
             position: relative;
-        }
-
-        .academic-image {
-            width: 150px;
-            height: auto;
-        }
-
-        .academic-image2 {
-            width: 70px;
-            height: auto;
         }
 
         #academic-overlay,
@@ -185,16 +256,6 @@
             z-index: 2;
         }
 
-        #new-york-wrapper {
-            top: 30%;
-            right: 10%;
-        }
-
-        #new-york-image {
-            width: 450px;
-            height: auto;
-        }
-
         /* Text */
 
         .text {
@@ -209,6 +270,19 @@
             left: 150px;
         }
 
+        .text-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            position: absolute;
+            top: 150px; /* Position the center of the container 150px from the top */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Poppins', sans-serif;
+        }
+
         #intro-text {
             top: 220px;
             left: 150px;
@@ -219,7 +293,6 @@
         #title-text {
             top: 0px;
             left: 0px;
-            text-align: left;
             font-size: 24px;
         }
 
@@ -229,6 +302,8 @@
             text-align: left;
             font-size: 14px;
         }
+
+
     </style>
 </head>
 
@@ -297,13 +372,50 @@
                     
                 Discovered mathematical modeling and the <a href="https://e.math.cornell.edu/sites/mcm/" style="text-decoration: underline; color: inherit;">Cornell Mathematical Contest in Modeling (CMCM)</a>.
                 Represented Cornell in the 2024 international <a href="https://www.comap.com/contests/mcm-icm" style="text-decoration: underline; color: inherit;">Mathematical Contest in Modeling (MCM)</a> despite failing to submit a manuscript in the 2021 CMCM. 
-                (See my successful manuscripts under Modeling Projects) <br><br>
+                (Continue scrolling to see my successfully submitted papers) <br><br>
 
                 Joined <a href="https://www.cornelldti.org/" style="text-decoration: underline; color: inherit;">Cornell Digital Tech & Innovation Project Team</a> (previously Cornell Design & Tech Initiative).
                 From Business Analyst to Business Lead to Full-Team Lead improving team culture and operations for 100+ members.
                 <br><br>
 
                 To be continued...
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3 -->
+
+    <div id="page3" class="page">
+
+        <div id="book-wrapper" class="image-wrapper">
+            <img id="books-image" src="Images/Books-t.png" alt="Books">
+            <div id="books-overlay2"></div>
+        </div>
+
+        <div id="text-container" class="text-center">
+            <div id="centered-title" style="color: black; font-size: 24px;">
+                Modeling Projects
+            </div>
+            <div id="centered-subtitle" style="color: black; font-size: 14px;">
+                All models are wrong, some are useful. - George Box
+            </div>
+        </div>
+
+        <div id="image-container" class="image-container">
+            <div class="image-item">
+                <div class="image-title">Improving Road Safety</div>
+                <img src="Images/Officer-t.png" alt="Officer">
+                <div class="image-description">Scheduling patrol officers based on past traffic accidents data to reduce future accidents.</div>
+            </div>
+            <div class="image-item">
+                <div class="image-title">Treating Invasive Speacies</div>
+                <img src="Images/Grapes-t.png" alt="Grapes">
+                <div class="image-description">Modeling spotted lanternflies in vineyards and optimizing use of insecticides to maximize harvest.</div>
+            </div>
+            <div class="image-item">
+                <div class="image-title">Momentum in Tennis</div>
+                <img src="Images/Tennis-t.png" alt="Tennis">
+                <div class="image-description">Predicting shifts of "game momentum" in tennis matches to suggest game strategies.</div>
             </div>
         </div>
     </div>
@@ -317,14 +429,15 @@
         const hoverColor = 'rgba(170,159,270, 0.1)'; // Define the shared hover color
 
         const overlays = [
-            { id: 'academic-overlay', name: 'Academics'},
-            { id: 'academic-overlay2', name: 'Home'},
-            { id: 'piano-overlay', name: 'Music'},
-            { id: 'laptop-overlay', name: 'Data Analytics Projects'},
-            { id: 'books-overlay', name: 'Modeling Projects'},
-            { id: 'camera-overlay', name: 'Photography'},
-            { id: 'coffee-overlay', name: 'Career Journey'},
-            { id: 'notebook-overlay', name: 'Favorite Reads'}
+            { id: 'academic-overlay',   name: 'Academics'},
+            { id: 'piano-overlay',      name: 'Music'},
+            { id: 'laptop-overlay',     name: 'Data Analytics Projects'},
+            { id: 'books-overlay',      name: 'Modeling Projects'},
+            { id: 'coffee-overlay',     name: 'Career Journey'},
+            { id: 'notebook-overlay',   name: 'Favorite Reads'},
+            { id: 'camera-overlay',     name: 'Photography'},
+            { id: 'academic-overlay2',  name: 'Home'},
+            { id: 'books-overlay2',       name: 'Home'}
         ];
 
         // Add event listeners dynamically
@@ -367,6 +480,11 @@
                         event.preventDefault();
                         document.getElementById('page2').scrollIntoView({ behavior: 'smooth' });
                     });
+                } else if (overlay.id === 'books-overlay') {
+                    element.addEventListener('click', function (event) {
+                        event.preventDefault();
+                        document.getElementById('page3').scrollIntoView({ behavior: 'smooth' });
+                    });
                 }
             } else {
                 console.warn(`Element with ID "${overlay.id}" not found.`);
@@ -379,6 +497,11 @@
             document.getElementById('page1').scrollIntoView({ behavior: 'smooth' });
         });
 
+        document.getElementById('books-overlay2').addEventListener('click', function (event) {
+            event.preventDefault();
+            document.getElementById('page1').scrollIntoView({ behavior: 'smooth' });
+        });
+
         // Add scroll event listener to handle fade in/out effect
         window.addEventListener('scroll', function () {
             const pages = document.querySelectorAll('.page');
@@ -387,8 +510,8 @@
             const scrollPosition = window.scrollY;
 
             pages.forEach((page, index) => {
-                const pageImages = page.querySelectorAll('.image-wrapper');
-                const pageTexts = page.querySelectorAll('.text');
+                const pageImages = page.querySelectorAll('.image-wrapper, .image-item');
+                const pageTexts = page.querySelectorAll('.text, .text-center');
                 const pageTop = page.offsetTop;
                 const pageHeight = page.offsetHeight;
 
