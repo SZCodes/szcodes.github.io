@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html>
 
+<!-- To Do:
+ - replace bottom right icons that scroll up with house "home" image
+ - make current bottom right icons in the top left as page icon (add "home" icon to home page as well)
+ - page 5
+ - page 6
+ - page 7
+ - page 8
+ - add sticky menu bar when I'm not on the home page to be able to move between other pages
+ - replace drawings with my own-->
+
 <head>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
@@ -30,7 +40,7 @@
             background-color: #fafafa;
         }
 
-        #page2 {
+        #page2, #page4 {
             background-color: #f0f0f0;
         }
 
@@ -41,13 +51,13 @@
         }
 
         #piano-wrapper {
-            top: 100px;
-            left: 700px;
+            top: 150px;
+            left: 750px;
         }
 
         #desk-wrapper {
-            top: 390px;
-            left: 400px;
+            top: 400px;
+            left: 25%;
         }
 
         #book-wrapper {
@@ -55,9 +65,14 @@
             right: 70px;
         }
 
+        #laptop-wrapper {
+            bottom: 50px;
+            right: 70px;
+        }
+
         #camera-wrapper {
-            left: 150px;
-            top: 481.5px;
+            left: 452px;
+            top: 560px;
         }
 
         #academic-wrapper {
@@ -78,8 +93,8 @@
         /* Images */
 
         #piano-image {
-            width: 500px;
-            height: auto;
+            height: 300px;
+            width: auto;
         }
 
         #desk-image {
@@ -92,8 +107,13 @@
             height: auto;
         }
 
+        #laptop-image {
+            width: 100px;
+            height: auto;
+        }
+
         #camera-image {
-            width: 250px;
+            width: 150px;
             height: auto;
         }
 
@@ -122,16 +142,39 @@
 
         .image-item {
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .image-item img {
             width: 220px;
             height: 220px;
-            padding: 15px;
             object-fit: contain;
-            border: 1px solid black;
             box-sizing: border-box;
             transition: opacity 0.3s;
+        }
+
+        /* Border taken from https://codepen.io/mp/pen/kBEeKw */
+        .box{
+            margin:25px;
+            width:auto;
+            height:auto;
+            background:rgba(255, 255, 255, 0);
+            border: solid grey;
+            border-color: grey;
+            float:left; 
+        }
+
+        .border{
+            border-width: 3px 2px 2px 3px;
+            border-radius:95% 4% 97% 5%/4% 94% 3% 95%;
+            transform: rotate(2deg);
+        }
+
+        .oddboxinner{
+            margin:15px;
+            transform: rotate(-2deg);
         }
 
         .image-item img:hover {
@@ -139,18 +182,17 @@
         }
 
         .image-title {
-            margin-bottom: 20px;
             font-family: 'Poppins', sans-serif;
             font-size: 18px;
             color: black;
         }
 
         .image-description {
-            margin-top: 10px;
             font-family: 'Poppins', sans-serif;
             font-size: 14px;
             color: black;
             width: 250px;
+            text-align: center;
         }
 
         /* Overlays */
@@ -163,18 +205,21 @@
         #camera-overlay,
         #academic-overlay,
         #academic-overlay2,
-        #books-overlay2 {
+        #books-overlay2,
+        #laptop-overlay2 {
             position: absolute;
             background-color: rgba(255, 255, 255, 0);
             pointer-events: auto;
+            border: 3px solid rgba(255, 255, 255, 0);
+            transition: border 0.3s ease;
+            z-index: 1;
         }
 
         #piano-overlay {
-            top: 0;
-            left: 205px;
-            width: 58%;
+            top: -5px;
+            left: 170px;
+            width: 62%;
             height: 100%;
-            z-index: 1;
         }
 
         #books-overlay2 {
@@ -182,72 +227,75 @@
             left: -10px;
             width: 120%;
             height: 110%;
-            z-index: 1;
             pointer-events: auto;
         }
 
         #laptop-overlay {
-            top: 90px;
+            top: 60px;
             left: 200px;
             width: 37%;
-            height: 50%;
-            z-index: 1;
+            height: 55%;
+            pointer-events: auto;
+        }
+
+        #laptop-overlay2 {
+            top: -10px;
+            left: -10px;
+            width: 115%;
+            height: 110%;
+            pointer-events: auto;
         }
 
         #books-overlay {
-            top: 55px;
+            top: 30px;
             left: 35px;
-            width: 30%;
-            height: 55%;
-            z-index: 1;
+            width: 29%;
+            height: 60%;
         }
 
         #coffee-overlay {
             left: 475px;
-            bottom: 88px;
+            bottom: 89px;
             width: 15%;
-            height: 19%;
-            z-index: 1;
+            height: 21%;
         }
 
         #notebook-overlay {
-            left: 350px;
-            bottom: 20px;
-            width: 37%;
+            left: 345px;
+            bottom: 24px;
+            width: 38%;
             height: 25%;
-            z-index: 0;
         }
 
         #camera-overlay {
-            left: 108px;
-            top: 43px;
-            width: 53%;
-            height: 68%;
-            z-index: 1;
+            left: 5px;
+            top: 5px;
+            width: 95%;
+            height: 90%;
         }
 
         #academic-container {
             padding: 5px;
         }
 
-        #academic-frame-outer {
-            border: 1px solid black;
-            padding: 5px;
-        }
-
         #academic-frame-inner {
-            border: 1px solid black;
+            /* border: 3px solid lightgrey; */
             padding: 5px;
             position: relative;
         }
 
-        #academic-overlay,
+        #academic-overlay {
+            top: 15px;
+            left: 15px;
+            width: 85%;
+            height: 85%;
+        }
+
         #academic-overlay2 {
             top: -2px;
             left: -2px;
             width: 100%;
             height: 100%;
-            z-index: 1;
         }
 
         .overlay-label {
@@ -316,25 +364,25 @@
     <!-- Page 1 -->
     <div id="page1" class="page">
         <div id="piano-wrapper" class="image-wrapper">
-            <img id="piano-image" src="Images/Piano-t.png" alt="Piano">
+            <img id="piano-image" src="Images/Piano-c-large.png" alt="Piano">
             <div id="piano-overlay"></div>
         </div>
         <div id="desk-wrapper" class="image-wrapper">
-            <img id="desk-image" src="Images/Desk-t.png" alt="Desk">
+            <img id="desk-image" src="Images/Desk-c.png" alt="Desk">
             <div id="laptop-overlay"></div>
             <div id="books-overlay"></div>
             <div id="coffee-overlay"></div>
             <div id="notebook-overlay"></div>
         </div>
         <div id="camera-wrapper" class="image-wrapper">
-            <img id="camera-image" src="Images/Camera-t.png" alt="Camera">
+            <img id="camera-image" src="Images/Camera-c.png" alt="Camera">
             <div id="camera-overlay"></div>
         </div>
         <div id="academic-wrapper" class="image-wrapper">
             <div id="academic-container">
-                <div id="academic-frame-outer">
-                    <div id="academic-frame-inner">
-                        <img id="academic-image" class="academic-image" src="Images/Graduation-t.png" alt="Academic">
+                <div class="box border">
+                    <div class="oddboxinner">
+                        <img id="academic-image" class="academic-image" src="Images/Graduation-c.png" alt="Academic">
                     </div>
                 </div>
             </div>
@@ -352,16 +400,12 @@
     <div id="page2" class="page">
         <div id="academic-wrapper2" class="image-wrapper">
             <div id="academic-container">
-                <div id="academic-frame-outer" style="border: 0.5px solid black;"> 
-                    <div id="academic-frame-inner" style="border: 0.5px solid black;">
-                        <img id="academic-image2" class="academic-image2" src="Images/Graduation-t.png" alt="Academic">
-                    </div>
-                </div>
+                <img id="academic-image2" class="academic-image2" src="Images/Graduation-c.png" alt="Academic">
             </div>
             <div id="academic-overlay2"></div>
         </div>
         <div id="new-york-wrapper" class="image-wrapper">
-            <img id="new-york-image" src="Images/New-York-t.png" alt="New York">
+            <img id="new-york-image" src="Images/New-York-c.png" alt="New York">
         </div>
         <div id="text-container" class="text-container">
             <div id="title-text" style="color: black;" class="text">
@@ -393,7 +437,7 @@
     <div id="page3" class="page">
 
         <div id="book-wrapper" class="image-wrapper">
-            <img id="books-image" src="Images/Books-t.png" alt="Books">
+            <img id="books-image" src="Images/Desk-books-c.png" alt="Books">
             <div id="books-overlay2"></div>
         </div>
 
@@ -409,24 +453,87 @@
         <div id="image-container" class="image-container">
             <div class="image-item">
                 <div class="image-title">Improving Road Safety</div>
-                <a href="https://drive.google.com/file/d/1hzevmprdYEHiCSI499cQOXaYTnG-ddKG/view?usp=drive_link">
-                    <img src="Images/Officer-t.png" alt="Officer">
-                </a>
+                <div class="box border">
+                    <div class="oddboxinner">
+                        <a href="https://drive.google.com/file/d/1hzevmprdYEHiCSI499cQOXaYTnG-ddKG/view?usp=drive_link">
+                            <img src="Images/Officer-c.png" alt="Officer">
+                        </a>
+                    </div>
+                </div>
                 <div class="image-description">Scheduling patrol officers based on past traffic accidents data to reduce future accidents.</div>
             </div>
             <div class="image-item">
                 <div class="image-title">Treating Invasive Species</div>
-                <a href="https://drive.google.com/file/d/1ahhYj_LeeQ63ypCFB_eEXu70HZjEed1K/view?usp=drive_link">
-                    <img src="Images/Grapes-t.png" alt="Grapes">
-                </a>
+                <div class="box border">
+                    <div class="oddboxinner">
+                        <a href="https://drive.google.com/file/d/1ahhYj_LeeQ63ypCFB_eEXu70HZjEed1K/view?usp=drive_link">
+                            <img src="Images/Grapes-c.png" alt="Grapes">
+                        </a>
+                    </div>
+                </div>
                 <div class="image-description">Modeling spotted lanternflies in vineyards and optimizing use of insecticides to maximize harvest.</div>
             </div>
             <div class="image-item">
                 <div class="image-title">Momentum in Tennis</div>
-                <a href="https://drive.google.com/file/d/1EQYrWV1fVVsaZMCMtMZ5EC-f_7x6WHu9/view?usp=drive_link">
-                    <img src="Images/Tennis-t.png" alt="Tennis">
-                </a>
+                <div class="box border">
+                    <div class="oddboxinner">
+                        <a href="https://drive.google.com/file/d/1EQYrWV1fVVsaZMCMtMZ5EC-f_7x6WHu9/view?usp=drive_link">
+                            <img src="Images/Tennis-c.png" alt="Tennis">
+                        </a>
+                    </div>
+                </div>
                 <div class="image-description">Predicting shifts of "game momentum" in tennis matches to suggest game strategies.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 4 -->
+
+    <div id="page4" class="page">
+
+        <div id="laptop-wrapper" class="image-wrapper">
+            <img id="laptop-image" src="Images/Desk-laptop-c.png" alt="Laptop">
+            <div id="laptop-overlay2"></div>
+        </div>
+
+        <div id="text-container" class="text-center">
+            <div id="centered-title" style="color: black; font-size: 24px;">
+                Data Analytics / Visualization Projects
+            </div>
+            <div id="centered-subtitle" style="color: black; font-size: 14px;">
+                In God we trust; all others must bring data. - W. Edward Deming
+            </div>
+        </div>
+
+        <div id="image-container" class="image-container">
+            <div class="image-item">
+                <div class="image-title">What Influences Book Ratings?</div>
+                <div class="box border">
+                    <div class="oddboxinner">
+                        <a href="Book-Ratings/index.html">
+                            <img src="Images/Books-c.png" alt="Book-Ratings">
+                        </a>
+                    </div>
+                </div>
+                <div class="image-description">Visualizing ratings of books across genres and other factors to identify trends.</div>
+            </div>
+            <div class="image-item">
+                <div class="image-title">Mailing Center Service Time</div>
+                <div class="box border">
+                    <div class="oddboxinner">
+                        <img src="Images/Mail-c.png" alt="Mail">
+                    </div>
+                </div>
+                <div class="image-description">Identifying bottlenecks in the campus mailing center and proposing methods to improve service times.</div>
+            </div>
+            <div class="image-item">
+                <div class="image-title">Emoji Sentiment Analysis</div>
+                <div class="box border">
+                    <div class="oddboxinner">
+                        <img src="Images/Phone-c.png" alt="Twitter">
+                    </div>
+                </div>
+                <div class="image-description">Performing sentiment analysis on Twitter posts to understand emoji use in social media.</div>
             </div>
         </div>
     </div>
@@ -440,77 +547,57 @@
         const hoverColor = 'rgba(170,159,270, 0.1)'; // Define the shared hover color
 
         const overlays = [
-            { id: 'academic-overlay',   name: 'Academics'},
-            { id: 'piano-overlay',      name: 'Music'},
-            { id: 'laptop-overlay',     name: 'Data Analytics Projects'},
-            { id: 'books-overlay',      name: 'Modeling Projects'},
-            { id: 'coffee-overlay',     name: 'Career Journey'},
-            { id: 'notebook-overlay',   name: 'Favorite Reads'},
-            { id: 'camera-overlay',     name: 'Photography'},
-            { id: 'academic-overlay2',  name: 'Home'},
-            { id: 'books-overlay2',       name: 'Home'}
+            { id: 'academic-overlay', name: 'Academics', scroll: 'page2'},
+            { id: 'books-overlay', name: 'Modeling Projects', scroll: 'page3'},
+            { id: 'laptop-overlay', name: 'Data Analytics Projects', scroll: 'page4'},
+            { id: 'coffee-overlay', name: 'Career Journey', scroll: 'page5'},
+            { id: 'camera-overlay', name: 'Photography', scroll: 'page6'},
+            { id: 'notebook-overlay', name: 'Favorite Reads', scroll: 'page7'},
+            { id: 'piano-overlay', name: 'Music', scroll: 'page8'},
+            { id: 'academic-overlay2', name: 'Home', scroll: 'page1'},
+            { id: 'books-overlay2', name: 'Home', scroll: 'page1'},
+            { id: 'laptop-overlay2', name: 'Home', scroll: 'page1'}
         ];
 
         // Add event listeners dynamically
         overlays.forEach(overlay => {
             const element = document.getElementById(overlay.id);
-            if (element) {
 
-                // Create label for overlay
-                const label = document.createElement('span');
-                label.textContent = overlay.name;
-                label.classList.add('overlay-label');
-                document.body.appendChild(label);
+            // Create label for overlay
+            const label = document.createElement('span');
+            label.textContent = overlay.name;
+            label.classList.add('overlay-label');
+            document.body.appendChild(label);
 
-                // Add hover effect to show label and link
-                element.addEventListener('mouseover', function () {
-                    element.style.border = '3px solid rgba(111, 68, 54, 0.3)';
+            // Add hover effect to show label and link
+            element.addEventListener('mouseover', function () {
+                
+                element.style.border = '3px solid lightblue';
 
-                    // Get the position of the overlay and place the label
-                    const overlayRect = element.getBoundingClientRect();
-                    if (overlay.id === 'notebook-overlay') {
-                        label.style.left = `${overlayRect.left + window.scrollX}px`;
-                        label.style.top = `${overlayRect.bottom + window.scrollY - 5}px`;
-                    } else {
-                        label.style.left = `${overlayRect.left + window.scrollX}px`;
-                        label.style.top = `${overlayRect.top + window.scrollY - 30}px`;
-                    }
-                    
-                    label.style.visibility = 'visible'; // Show the label on hover
-                });
-
-                element.addEventListener('mouseout', function () {
-                    element.style.backgroundColor = 'rgba(255, 255, 255, 0)';
-                    label.style.visibility = 'hidden';
-                    element.style.border = 'none';
-                });
-
-                // Add click event to scroll to page2
-                if (overlay.id === 'academic-overlay') {
-                    element.addEventListener('click', function (event) {
-                        event.preventDefault();
-                        document.getElementById('page2').scrollIntoView({ behavior: 'smooth' });
-                    });
-                } else if (overlay.id === 'books-overlay') {
-                    element.addEventListener('click', function (event) {
-                        event.preventDefault();
-                        document.getElementById('page3').scrollIntoView({ behavior: 'smooth' });
-                    });
+                // Get the position of the overlay and place the label
+                const overlayRect = element.getBoundingClientRect();
+                if (overlay.id === 'notebook-overlay' || overlay.id === 'camera-overlay') {
+                    label.style.left = `${overlayRect.left + window.scrollX}px`;
+                    label.style.top = `${overlayRect.bottom + window.scrollY - 2}px`;
+                } else {
+                    label.style.left = `${overlayRect.left + window.scrollX}px`;
+                    label.style.top = `${overlayRect.top + window.scrollY - 30}px`;
                 }
-            } else {
-                console.warn(`Element with ID "${overlay.id}" not found.`);
-            }
-        });
+                
+                label.style.visibility = 'visible'; // Show the label on hover
+            });
 
-        // Add click event to scroll back to page1
-        document.getElementById('academic-overlay2').addEventListener('click', function (event) {
-            event.preventDefault();
-            document.getElementById('page1').scrollIntoView({ behavior: 'smooth' });
-        });
+            element.addEventListener('mouseout', function () {
+                element.style.backgroundColor = 'rgba(255, 255, 255, 0)';
+                label.style.visibility = 'hidden';
+                element.style.border = '3px solid rgba(255, 255, 255, 0)';
+            });
 
-        document.getElementById('books-overlay2').addEventListener('click', function (event) {
-            event.preventDefault();
-            document.getElementById('page1').scrollIntoView({ behavior: 'smooth' });
+            // Add click event to scroll to the next page
+            element.addEventListener('click', function (event) {
+                event.preventDefault();
+                document.getElementById(overlay.scroll).scrollIntoView({ behavior: 'smooth' });
+            });
         });
 
         // Add scroll event listener to handle fade in/out effect
